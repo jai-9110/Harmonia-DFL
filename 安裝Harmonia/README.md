@@ -123,7 +123,7 @@ $ cd ..
 $ cd ..
 $ sudo make all
 ```
-* ##每次修改過程式碼都要再次執行sudo make all，而在make all之前要先執行make clean，才能make all
+* 每次修改過程式碼都要再次執行sudo make all，而在make all之前要先執行make clean，才能make all
 check : 檢查images 是否有operator fedavg
 ```
 $ cp src/protos/python_protos/service_pb2_grpc.py examples/edge/
