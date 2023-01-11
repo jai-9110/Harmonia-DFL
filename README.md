@@ -5,4 +5,4 @@
 * Worker2 IP : 10.135.170.113
 * Worker4 IP : 10.135.170.111
 
-**請先閱讀Harmonia-FL Tutorial，再執行此教學內容**
+**請先閱讀[Harmonia-FL Tutorial](https://github.com/jai-9110/Harmonia-FL.git)，再執行此教學內容**
