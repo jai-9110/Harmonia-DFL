@@ -32,7 +32,7 @@ $ kubectl port-forward --address 0.0.0.0 service/harmonia-gitea3 3003
 ![image](https://github.com/jai-9110/Harmonia-DFL/blob/6356d46845b3a1aadb39aa727655878e84625e6f/picture/%E6%96%B0%E5%A2%9E%E5%84%B2%E5%AD%98%E5%BA%AB.png)
 3. 設定儲存庫，詳細設定可參考Harmonia-FL Tutorial 
 
-| gitea1 | `train-plan1` | `global model1` | `local model1` | `local model2` | `local model3` |  
+| gitea1 | `train-plan1` | `global-model1` | `local-model1` | `local-model2` | `local-model3` |  
 |---|:---:|:---:|:---:|:---:|:---:|  
 | aggregator1 |	可讀 | 可寫	| 可讀 | 可讀 | 可讀 |  
 | edge1	| 可讀 | 可讀 | 可寫 | - | - |  
@@ -41,7 +41,7 @@ $ kubectl port-forward --address 0.0.0.0 service/harmonia-gitea3 3003
 | *webhook* | http://mnist-aggregator1:9080 | http://mnist-edge1:9080 | http://mnist-aggregator1:9080 | http://mnist-aggregator1:9080 | http://mnist-aggregator1:9080 | 
 | | http://mnist-edge1:9080 |			
 -------------------------------------------------------------------------------------------------------------
-| gitea2 | `train-plan2` | `global model2` | `local model1` | `local model2` | `local model3` |  
+| gitea2 | `train-plan2` | `global-model2` | `local-model1` | `local-model2` | `local-model3` |  
 |---|:---:|:---:|:---:|:---:|:---:|  
 | aggregator2 |	可讀 | 可寫	| 可讀 | 可讀 | 可讀 |  
 | edge1	| - | - | 可寫 | - | - |  
@@ -50,7 +50,7 @@ $ kubectl port-forward --address 0.0.0.0 service/harmonia-gitea3 3003
 | *webhook* | http://mnist-aggregator2:9080 | http://mnist-edge2:9080 | http://mnist-aggregator2:9080 | http://mnist-aggregator2:9080 | http://mnist-aggregator2:9080 | 
 | | http://mnist-edge2:9080 |		
 -----------------------------------------------------------------------------------------------------------------
-| gitea3 | `train-plan3` | `global model3` | `local model1` | `local model2` | `local model3` |  
+| gitea3 | `train-plan3` | `global-model3` | `local-model1` | `local-model2` | `local-model3` |  
 |---|:---:|:---:|:---:|:---:|:---:|  
 | aggregator3 |	可讀 | 可寫	| 可讀 | 可讀 | 可讀 |  
 | edge1	| - | - | 可寫 | - | - |  
