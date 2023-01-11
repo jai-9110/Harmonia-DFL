@@ -30,9 +30,10 @@ $ kubectl port-forward --address 0.0.0.0 service/harmonia-gitea3 3003
 ![image](https://github.com/jai-9110/Harmonia-DFL/blob/7b9eaae0d6cbad22babca045e2468f357fabd504/picture/%E8%A8%BB%E5%86%8A%E5%B8%B3%E8%99%9F.png)
 2. 登入gitea1，點選右上角的新增儲存庫
 ![image](https://github.com/jai-9110/Harmonia-DFL/blob/6356d46845b3a1aadb39aa727655878e84625e6f/picture/%E6%96%B0%E5%A2%9E%E5%84%B2%E5%AD%98%E5%BA%AB.png)
-3. 設定儲存庫，詳細設定可參考Harmonia-FL Tutorial  
+3. 設定儲存庫，詳細設定可參考Harmonia-FL Tutorial 
+
 | gitea1 | `train-plan1` | `global model1` | `local model1` | `local model2` | `local model3` |  
-| --- | :---: | :---: | :---: | :---: | :---: |  
+|---|:---:|:---:|:---:|:---:|:---:|  
 | aggregator1 |	可讀 | 可寫	| 可讀 | 可讀 | 可讀 |  
 | edge1	| 可讀 | 可讀 | 可寫 | - | - |  
 | edge2	| -	| -	| -	| 可寫	| - |  
