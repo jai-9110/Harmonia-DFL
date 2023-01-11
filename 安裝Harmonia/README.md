@@ -62,7 +62,27 @@ $ kubectl port-forward --address 0.0.0.0 service/harmonia-gitea3 3003
 4. 獲取GiteaUserToken，詳細方法可參考[Harmonia-FL Tutorial](https://github.com/jai-9110/Harmonia-FL/tree/main/%E5%AE%89%E8%A3%9DHarmonia)
 > 所有用戶的token都要記下來  
 ```
-$ sudo nano configs_DFL.yml    // 上面記錄的token要寫到此檔案中
+$ sudo nano [configs_DFL.yml](https://github.com/jai-9110/Harmonia-DFL/blob/5a9ff4aeae9f4905f119aa5a7e697864ec1a7fb4/%E5%AE%89%E8%A3%9DHarmonia/configs_DFL.yml)   // 上面記錄的token要寫到此檔案中
 ```
-* token的順序與edgeMOdelRepos的順序相同，不可對調
-[configs_DFL.yml](https://github.com/jai-9110/Harmonia-DFL/blob/5a9ff4aeae9f4905f119aa5a7e697864ec1a7fb4/%E5%AE%89%E8%A3%9DHarmonia/configs_DFL.yml)
+* token的順序與edgeMOdelRepos的順序相同，不可對調  
+
+```
+$ kubectl apply -f configs_DFL.yml
+```
+
+# 安裝Harmonia
+```
+$ git clone https://github.com/ailabstw/harmonia.git
+$ sudo nano harmonia/src/protos/service.proto   // 版本更新
+```
+* 替換第三行為此內容
+```
+option go_package = “./;protos”;     
+```
+
+```
+$ cd harmonia/src/steward/operator/edge/
+$ ls
+$ rm -rf [payload.go](
+
+
