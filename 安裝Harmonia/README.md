@@ -15,4 +15,12 @@ $ kubectl apply -f gitea3_deployment.yml
 > 在三台實體機上各自建立Gitea server  
 > 連線至Gitea前要先設定Mobaxterm的Tunneling
 * port num根據上方的gitea.yml中所寫的進行設定，其餘設定與上方教學相同
-![image](
+![image](https://github.com/jai-9110/Harmonia-DFL/blob/88e04ef46d8b844352e136923f705c72473b7d53/picture/gitea_tunnel.png)
+
+```
+$ kubectl port-forward --address 0.0.0.0 service/harmonia-gitea1 3001
+$ kubectl port-forward --address 0.0.0.0 service/harmonia-gitea2 3002
+$ kubectl port-forward --address 0.0.0.0 service/harmonia-gitea3 3003
+```
+> 開啟三個shell，執行上方三行指令  
+> 開啟三個瀏覽器，分別輸入192.168.71.10:3001、192.168.71.10:3002、192.168.71.10:3003，往下拉後直接安裝  
