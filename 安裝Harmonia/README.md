@@ -36,6 +36,6 @@ $ kubectl port-forward --address 0.0.0.0 service/harmonia-gitea3 3003
 | aggregator1 |	可讀 | 可寫	| 可讀 | 可讀 | 可讀 |
 | edge1	| 可讀 | 可讀 | 可寫 | - | - |
 | edge2	| -	| -	| -	| 可寫	| - | 
-| edge3	| -	| -	| -	| -	| 可寫 | 
-| *webhook*	| http://mnist-aggregator1:9080	| http://mnist-edge1:9080	| http://mnist-aggregator1:9080	| http://mnist-aggregator1:9080	| http://mnist-aggregator1:9080 |
+| edge3	| - | - | - | - | 可寫 | 
+| *webhook* | http://mnist-aggregator1:9080 | http://mnist-edge1:9080 | http://mnist-aggregator1:9080 | http://mnist-aggregator1:9080 | http://mnist-aggregator1:9080 |
 | | http://mnist-edge1:9080 |				
