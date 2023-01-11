@@ -80,7 +80,7 @@ $ sudo nano harmonia/src/protos/service.proto   // 版本更新
 ```
 option go_package = “./;protos”;     
 ```
-
+## 修改Harmonia的程式碼，讓它變成DFL架構
 ```
 $ cd harmonia/src/steward/operator/edge/
 $ ls
