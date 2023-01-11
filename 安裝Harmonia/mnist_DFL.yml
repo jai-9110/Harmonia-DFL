@@ -1,0 +1,357 @@
+# mnist-deployment.yml
+
+# Aggregator1
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aggregator1
+  labels:
+    app: aggregator1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: aggregator1
+  template:
+    metadata:
+      labels:
+        app: aggregator1
+    spec:
+      nodeName: worker1
+      containers:
+      - name: operator
+        image: 10.135.170.112:5000/harmonia-operator-agg1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 9080
+          name: steward
+        volumeMounts:
+        - name: config
+          mountPath: /app/config.yml
+          subPath: aggregator-config.yml
+        - name: shared-repos
+          mountPath: /repos
+      - name: application
+        image: 10.135.170.112:5000/harmonia-fedavg1
+        imagePullPolicy: Always
+        volumeMounts:
+        - name: shared-repos
+          mountPath: /repos
+      volumes:
+      - name: config
+        configMap:
+          name: aggregator1-config
+      - name: shared-repos
+        emptyDir: {}
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: mnist-aggregator1
+spec:
+  selector:
+    app: aggregator1
+  ports:
+  - name: aggregator1
+    port: 9080
+    targetPort: 9080
+  type: NodePort
+
+---
+# Aggregator2
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aggregator2
+  labels:
+    app: aggregator2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: aggregator2
+  template:
+    metadata:
+      labels:
+        app: aggregator2
+    spec:
+      nodeName: worker2
+      containers:
+      - name: operator
+        image: 10.135.170.112:5000/harmonia-operator-agg2
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 9080
+          name: steward
+        volumeMounts:
+        - name: config
+          mountPath: /app/config.yml
+          subPath: aggregator-config.yml
+        - name: shared-repos
+          mountPath: /repos
+      - name: application
+        image: 10.135.170.112:5000/harmonia-fedavg2
+        imagePullPolicy: Always
+        volumeMounts:
+        - name: shared-repos
+          mountPath: /repos
+      volumes:
+      - name: config
+        configMap:
+          name: aggregator2-config
+      - name: shared-repos
+        emptyDir: {}
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: mnist-aggregator2
+spec:
+  selector:
+    app: aggregator2
+  ports:
+  - name: aggregator2
+    port: 9080
+    targetPort: 9080
+  type: NodePort
+
+---
+# Aggregator3
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aggregator3
+  labels:
+    app: aggregator3
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: aggregator3
+  template:
+    metadata:
+      labels:
+        app: aggregator3
+    spec:
+      nodeName: worker4
+      containers:
+      - name: operator
+        image: 10.135.170.112:5000/harmonia-operator-agg3
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 9080
+          name: steward
+        volumeMounts:
+        - name: config
+          mountPath: /app/config.yml
+          subPath: aggregator-config.yml
+        - name: shared-repos
+          mountPath: /repos
+      - name: application
+        image: 10.135.170.112:5000/harmonia-fedavg3
+        imagePullPolicy: Always
+        volumeMounts:
+        - name: shared-repos
+          mountPath: /repos
+      volumes:
+      - name: config
+        configMap:
+          name: aggregator3-config
+      - name: shared-repos
+        emptyDir: {}
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: mnist-aggregator3
+spec:
+  selector:
+    app: aggregator3
+  ports:
+  - name: aggregator3
+    port: 9080
+    targetPort: 9080
+  type: NodePort
+
+---
+# Edge1
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: edge1
+  labels:
+    app: edge1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: edge1
+  template:
+    metadata:
+      labels:
+        app: edge1
+    spec:
+      nodeName: worker1
+      containers:
+      - name: operator
+        image: 10.135.170.112:5000/harmonia-operator-edge1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 9080
+          name: steward
+        volumeMounts:
+        - name: config
+          mountPath: /app/config.yml
+          subPath: edge-config.yml
+        - name: shared-repos
+          mountPath: /repos
+      - name: application
+        image: 10.135.170.112:5000/mnist-edge1
+        imagePullPolicy: Always
+        volumeMounts:
+        - name: shared-repos
+          mountPath: /repos
+      volumes:
+      - name: config
+        configMap:
+          name: edge1-config
+      - name: shared-repos
+        emptyDir: {}
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: mnist-edge1
+spec:
+  selector:
+    app: edge1
+  ports:
+  - name: edge1
+    port: 9080
+    targetPort: 9080
+  type: NodePort
+
+---
+# Edge2
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: edge2
+  labels:
+    app: edge2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: edge2
+  template:
+    metadata:
+      labels:
+        app: edge2
+    spec:
+      nodeName: worker2
+      containers:
+      - name: operator
+        image: 10.135.170.112:5000/harmonia-operator-edge2
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 9080
+          name: steward
+        volumeMounts:
+        - name: config
+          mountPath: /app/config.yml
+          subPath: edge-config.yml
+        - name: shared-repos
+          mountPath: /repos
+      - name: application
+        image: 10.135.170.112:5000/mnist-edge2
+        imagePullPolicy: Always
+        volumeMounts:
+        - name: shared-repos
+          mountPath: /repos
+      volumes:
+      - name: config
+        configMap:
+          name: edge2-config
+      - name: shared-repos
+        emptyDir: {}
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: mnist-edge2
+spec:
+  selector:
+    app: edge2
+  ports:
+  - name: edge2
+    port: 9080
+    targetPort: 9080
+  type: NodePort
+
+---
+# Edge3
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: edge3
+  labels:
+    app: edge3
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: edge3
+  template:
+    metadata:
+      labels:
+        app: edge3
+    spec:
+      nodeName: worker4
+      containers:
+      - name: operator
+        image: 10.135.170.112:5000/harmonia-operator-edge3
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 9080
+          name: steward
+        volumeMounts:
+        - name: config
+          mountPath: /app/config.yml
+          subPath: edge-config.yml
+        - name: shared-repos
+          mountPath: /repos
+      - name: application
+        image: 10.135.170.112:5000/mnist-edge3
+        imagePullPolicy: Always
+        volumeMounts:
+        - name: shared-repos
+          mountPath: /repos
+      volumes:
+      - name: config
+        configMap:
+          name: edge3-config
+      - name: shared-repos
+        emptyDir: {}
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: mnist-edge3
+spec:
+  selector:
+    app: edge3
+  ports:
+  - name: edge3
+    port: 9080
+    targetPort: 9080
+  type: NodePort
