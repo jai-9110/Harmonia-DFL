@@ -1,7 +1,7 @@
 1. 連線學校VPN
 > 中原VPN教學 :   
 > https://itouch.cycu.edu.tw/active_project/cycu2900h_04/cycu_01/new/SSL%20VPN%20%E5%AE%89%E8%A3%9D%E8%A8%AD%E5%AE%9A%E6%95%99%E5%AD%B8%E6%96%87%E4%BB%B6-201902.pdf
-2. 點選Tunneling
+2. 點選Tunneling  
 ![image](https://github.com/jai-9110/Harmonia-DFL/blob/6d873a7046ea9ac211290a73b6d675d2151a2ac1/picture/Tunneling.png)
 3. 點選右下角的New SSH tunnel
 ![image](https://github.com/jai-9110/Harmonia-DFL/blob/c3a36d240ee2fac43ae49ea29de93e536f2502c9/picture/NEW_SSH_Tunnel.png)
