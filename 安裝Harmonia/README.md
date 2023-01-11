@@ -62,9 +62,10 @@ $ kubectl port-forward --address 0.0.0.0 service/harmonia-gitea3 3003
 4. 獲取GiteaUserToken，詳細方法可參考[Harmonia-FL Tutorial](https://github.com/jai-9110/Harmonia-FL/tree/main/%E5%AE%89%E8%A3%9DHarmonia)
 > 所有用戶的token都要記下來  
 ```
-$ sudo nano [configs_DFL.yml](https://github.com/jai-9110/Harmonia-DFL/blob/5a9ff4aeae9f4905f119aa5a7e697864ec1a7fb4/%E5%AE%89%E8%A3%9DHarmonia/configs_DFL.yml)   // 上面記錄的token要寫到此檔案中
+$ sudo nano configs_DFL.yml // 上面記錄的token要寫到此檔案中
 ```
 * token的順序與edgeMOdelRepos的順序相同，不可對調  
+[configs_DFL.yml](https://github.com/jai-9110/Harmonia-DFL/blob/5a9ff4aeae9f4905f119aa5a7e697864ec1a7fb4/%E5%AE%89%E8%A3%9DHarmonia/configs_DFL.yml)
 
 ```
 $ kubectl apply -f configs_DFL.yml
@@ -83,6 +84,196 @@ option go_package = “./;protos”;
 ```
 $ cd harmonia/src/steward/operator/edge/
 $ ls
-$ rm -rf [payload.go](
+$ rm -rf payload.go
+$ nano payload.go
+```
+[payload.go](https://github.com/jai-9110/Harmonia-DFL/blob/fe4bd87041fd9690925422a781e27e92f9eff56f/%E5%AE%89%E8%A3%9DHarmonia/DFL%E6%9E%B6%E6%A7%8B%E7%9A%84.go/operator/edge/payload.go)
+```
+$ rm -rf stateMachine.go
+$ nano stateMachine.go
+```
+[stateMachine.go](https://github.com/jai-9110/Harmonia-DFL/blob/fe4bd87041fd9690925422a781e27e92f9eff56f/%E5%AE%89%E8%A3%9DHarmonia/DFL%E6%9E%B6%E6%A7%8B%E7%9A%84.go/operator/edge/stateMachine.go)
+```
+$ cd ..
+$ rm -rf operator.go
+$ nano operator.go
+```
+[operator.go](https://github.com/jai-9110/Harmonia-DFL/blob/fe4bd87041fd9690925422a781e27e92f9eff56f/%E5%AE%89%E8%A3%9DHarmonia/DFL%E6%9E%B6%E6%A7%8B%E7%9A%84.go/operator/operator.go)
+```
+$ cd ..
+$ cd config
+$ rm -rf config.go
+$ nano config.go
+```
+[config.go](https://github.com/jai-9110/Harmonia-DFL/blob/fe4bd87041fd9690925422a781e27e92f9eff56f/%E5%AE%89%E8%A3%9DHarmonia/DFL%E6%9E%B6%E6%A7%8B%E7%9A%84.go/config/config.go)
+```
+$ cd iconfig
+$ rm -rf iconfig.go
+$ nano iconfig.go
+```
+[iconfig.go](https://github.com/jai-9110/Harmonia-DFL/blob/fe4bd87041fd9690925422a781e27e92f9eff56f/%E5%AE%89%E8%A3%9DHarmonia/DFL%E6%9E%B6%E6%A7%8B%E7%9A%84.go/config/iconfig.go)
+```
+$ cd ..
+$ rm -rf steward.go
+$ nano steward.go
+```
+[steward.go](https://github.com/jai-9110/Harmonia-DFL/blob/fe4bd87041fd9690925422a781e27e92f9eff56f/%E5%AE%89%E8%A3%9DHarmonia/DFL%E6%9E%B6%E6%A7%8B%E7%9A%84.go/steward.go)
+```
+$ cd ..
+$ cd ..
+$ sudo make all
+```
+* ##每次修改過程式碼都要再次執行sudo make all，而在make all之前要先執行make clean，才能make all
+check : 檢查images 是否有operator fedavg
+```
+$ cp src/protos/python_protos/service_pb2_grpc.py examples/edge/
+$ cp src/protos/python_protos/service_pb2.py examples/edge/
+```
+```
+$ sudo docker build examples/edge --tag 10.135.170.112:5000/mnist-edge1
+$ sudo docker build examples/edge --tag 10.135.170.112:5000/mnist-edge2
+$ sudo docker build examples/edge --tag 10.135.170.112:5000/mnist-edge3
 
+$ sudo docker tag harmonia/operator 10.135.170.112:5000/harmonia-operator-agg1
+$ sudo docker tag harmonia/operator 10.135.170.112:5000/harmonia-operator-agg2
+$ sudo docker tag harmonia/operator 10.135.170.112:5000/harmonia-operator-agg3
+$ sudo docker tag harmonia/operator 10.135.170.112:5000/harmonia-operator-edge1
+$ sudo docker tag harmonia/operator 10.135.170.112:5000/harmonia-operator-edge2
+$ sudo docker tag harmonia/operator 10.135.170.112:5000/harmonia-operator-edge3
 
+$ sudo docker tag harmonia/fedavg 10.135.170.112:5000/harmonia-fedavg1
+$ sudo docker tag harmonia/fedavg 10.135.170.112:5000/harmonia-fedavg2
+$ sudo docker tag harmonia/fedavg 10.135.170.112:5000/harmonia-fedavg3
+
+$ sudo docker push 10.135.170.112:5000/mnist-edge1
+$ sudo docker push 10.135.170.112:5000/mnist-edge2
+$ sudo docker push 10.135.170.112:5000/mnist-edge3
+
+$ sudo docker push 10.135.170.112:5000/harmonia-operator-agg1
+$ sudo docker push 10.135.170.112:5000/harmonia-operator-agg2
+$ sudo docker push 10.135.170.112:5000/harmonia-operator-agg3
+
+$ sudo docker push 10.135.170.112:5000/harmonia-operator-edge1
+$ sudo docker push 10.135.170.112:5000/harmonia-operator-edge2
+$ sudo docker push 10.135.170.112:5000/harmonia-operator-edge3
+
+$ sudo docker push 10.135.170.112:5000/harmonia-fedavg1
+$ sudo docker push 10.135.170.112:5000/harmonia-fedavg2
+$ sudo docker push 10.135.170.112:5000/harmonia-fedavg3
+```
+```
+$ sudo nano mnist_DFL.yml
+```
+[mnist_DFL.yml](https://github.com/jai-9110/Harmonia-DFL/blob/5a4ac31e45ad051eb9876fdd657e12785cf593c4/%E5%AE%89%E8%A3%9DHarmonia/mnist_DFL.yml)
+```
+$ kubectl apply -f mnist_DFL.yml
+check : $ kubectl get po
+```
+![image](https://github.com/jai-9110/Harmonia-DFL/blob/ca4cc4056ed36ef5e60ebfd0230cf78df0e74a67/picture/DFL_pod.png)
+
+# 開始訓練
+```
+$ git clone http://127.0.0.1:3001/gitea1/global-model1.git
+$ pushd global-model1
+
+$ git commit -m "pretrained model1" --allow-empty
+$ git push origin master
+
+$ popd
+$ rm -rf global-model1
+```
+---------------------------------------------------------
+```
+$ git clone http://127.0.0.1:3002/gitea2/global-model2.git
+$ pushd global-model2
+
+$ git commit -m "pretrained model2" --allow-empty
+$ git push origin master
+
+$ popd
+$ rm -rf global-model2
+```
+------------------------------------------------------------
+```
+$ git clone http://127.0.0.1:3003/gitea3/global-model3.git
+$ pushd global-model3
+
+$ git commit -m "pretrained model3" --allow-empty
+$ git push origin master
+
+$ popd
+$ rm -rf global-model3
+```
+-------------------------------------------------------
+```
+$ git clone http://127.0.0.1:3001/gitea1/train-plan1.git
+$ pushd train-plan1
+
+$ cat > plan.json << EOF
+{
+    "name": "MNIST",
+    "round": 10,
+    "edge": 3,
+    "EpR": 1,
+    "timeout": 90,
+    "pretrainedModel": "master"
+}
+EOF
+
+$ git add plan.json
+$ git commit -m "train plan1 commit”
+$ git push origin master
+
+$ popd
+$ rm -rf train-plan1
+```
+-------------------------------------------------------
+```
+$ git clone http://127.0.0.1:3002/gitea2/train-plan2.git
+$ pushd train-plan2
+
+$ cat > plan.json << EOF
+{
+    "name": "MNIST",
+    "round": 12,
+    "edge": 3,
+    "EpR": 1,
+    "timeout": 90,
+    "pretrainedModel": "master"
+}
+EOF
+
+$ git add plan.json
+$ git commit -m "train plan2 commit”
+$ git push origin master
+
+$ popd
+$ rm -rf train-plan2
+```
+----------------------------------------------------------------
+```
+$ git clone http://127.0.0.1:3003/gitea3/train-plan3.git
+$ pushd train-plan3
+
+$ cat > plan.json << EOF
+{
+    "name": "MNIST",
+    "round": 15,
+    "edge": 3,
+    "EpR": 1,
+    "timeout": 90,
+    "pretrainedModel": "master"
+}
+EOF
+
+$ git add plan.json
+$ git commit -m "train plan3 commit”
+$ git push origin master
+
+$ popd
+$ rm -rf train-plan3
+```
+* 查看pod運行情況(log)
+```
+$ kubectl logs <pod name> <container name> -f
+```
