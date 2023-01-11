@@ -10,11 +10,11 @@
 右上為實驗室的路由器，第一欄為要連接的該台實體機的IP(eg. 10.135.170.112)，第二欄為所要連入的該台實體機對外的port num : 22
 ![image](https://github.com/jai-9110/Harmonia-DFL/blob/af3b57f177f230b9b7ee4c0d73cd2b8b7da18d63/picture/SSH_Tunnel-1.png)
 ![image](https://github.com/jai-9110/Harmonia-DFL/blob/e2536eacc805f4a3c47a77284e583229bcfcd6cc/picture/SSH_Tunnel-2.png)
-5. 按Save保存，點選金鑰
+5. 按Save保存，點選金鑰  
 ![image](https://github.com/jai-9110/Harmonia-DFL/blob/e2dcdc42937285e9ba5eb4e7872e0323796fcf59/picture/key.png)
 > 金鑰請跟實驗室學長姐領取  
-6. 點選Local network adapter(金鑰前的綠色選項)，選擇一個虛擬網卡的IP
+6. 點選Local network adapter(金鑰前的綠色選項)，選擇一個虛擬網卡的IP  
 > 沒有虛擬網卡可透過Virtual box的主機網路管理員新增一張  
 ![image](https://github.com/jai-9110/Harmonia-DFL/blob/9acdcda48523064f5f647adccbceaee5abba1e6d/picture/Local_network_adapter.png)
-7. 設定完便可按下Start，就可遠端連線至實驗室的實體機
+7. 設定完便可按下Start，就可遠端連線至實驗室的實體機  
 > 若在實驗室連線至實體機則不須連上學校VPN  
