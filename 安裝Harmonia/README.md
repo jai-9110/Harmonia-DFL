@@ -38,5 +38,23 @@ $ kubectl port-forward --address 0.0.0.0 service/harmonia-gitea3 3003
 | edge1	| 可讀 | 可讀 | 可寫 | - | - |  
 | edge2	| -	| -	| -	| 可寫	| - |  
 | edge3	| - | - | - | - | 可寫 |  
-| *webhook* | http://mnist-aggregator1:9080 | http://mnist-edge1:9080 | http://mnist-aggregator1:9080 | http://mnist-aggregator1:9080 | http://mnist-aggregator1:9080 |  
-| | http://mnist-edge1:9080 |				
+| *webhook* | http://mnist-aggregator1:9080 | http://mnist-edge1:9080 | http://mnist-aggregator1:9080 | http://mnist-aggregator1:9080 | http://mnist-aggregator1:9080 | 
+| | http://mnist-edge1:9080 |			
+
+| gitea2 | `train-plan2` | `global model2` | `local model1` | `local model2` | `local model3` |  
+|---|:---:|:---:|:---:|:---:|:---:|  
+| aggregator2 |	可讀 | 可寫	| 可讀 | 可讀 | 可讀 |  
+| edge1	| - | - | 可寫 | - | - |  
+| edge2	| 可讀	| 可讀	| -	| 可寫	| - |  
+| edge3	| - | - | - | - | 可寫 |  
+| *webhook* | http://mnist-aggregator2:9080 | http://mnist-edge2:9080 | http://mnist-aggregator2:9080 | http://mnist-aggregator2:9080 | http://mnist-aggregator2:9080 | 
+| | | http://mnist-edge2:9080 |		
+
+| gitea3 | `train-plan3` | `global model3` | `local model1` | `local model2` | `local model3` |  
+|---|:---:|:---:|:---:|:---:|:---:|  
+| aggregator3 |	可讀 | 可寫	| 可讀 | 可讀 | 可讀 |  
+| edge1	| - | - | 可寫 | - | - |  
+| edge2	| -	| -	| -	| 可寫	| - |  
+| edge3	| 可讀 | 可讀 | - | - | 可寫 |  
+| *webhook* | http://mnist-aggregator3:9080 | http://mnist-edge3:9080 | http://mnist-aggregator3:9080 | http://mnist-aggregator3:9080 | http://mnist-aggregator3:9080 | 
+| | | http://mnist-edge3:9080 |		
