@@ -6,3 +6,11 @@
 * Worker4 IP : 10.135.170.111
 
 **請先閱讀[Harmonia-FL Tutorial](https://github.com/jai-9110/Harmonia-FL.git)，再執行此教學內容**
+
+閱讀順序 :
+1. Mobax設定
+2. 安裝Docker
+3. 安裝Kubernetes
+4. 安裝Harmonia
+
+Harmonia官方GitHub : <https://github.com/ailabstw/harmonia>
