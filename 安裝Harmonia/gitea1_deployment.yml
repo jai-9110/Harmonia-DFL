@@ -1,0 +1,58 @@
+# gitea_deployment.yml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: gitea-config1
+data:
+  ROOT_URL: http://harmonia-gitea1:3001 // 與下方的port num相同
+  LFS_START_SERVER: "true"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gitea-1-deployment # pod name
+  labels:
+    app: gitea1 # label備註
+spec:
+  replicas: 1 
+  selector:
+    matchLabels:
+      app: gitea1
+  template:
+    metadata:
+      labels:
+        app: gitea1
+    spec:
+      nodeName: worker1
+      containers: 
+        - name: gitea1
+          image: gitea/gitea:1.15.5-linux-amd64
+          ports:
+            - containerPort: 3001
+              name: gitea1
+          envFrom:
+            - configMapRef:
+                name: gitea-config1
+          volumeMounts:
+            - mountPath: /data1 
+              name: test-volume1 
+      volumes:
+        - name: test-volume1 
+          hostPath:
+            path: /home/harmonia-gitea 
+            type: DirectoryOrCreate
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: harmonia-gitea1 # service名稱
+spec:
+  selector:
+    app: gitea1
+  ports:
+  - name: gitea1-http
+    port: 3001
+    targetPort: 3000
+    nodePort: 30001
+  type: NodePort
